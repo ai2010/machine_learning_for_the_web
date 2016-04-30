@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Movie Sentiment Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% block stylesheets %}
+        <!-- Bootstrap provided CSS files. -->
+        <link href="/assets/css/bootstrap.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+        </style>
+        <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    {% endblock stylesheets %}
+
+    {% block javascript %}
+        <!-- Google Analytics tracker -->
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-30333956-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+
+        <!-- Bootstrap related javascript files -->
+     
+        <script src="/assets/js/jquery.js"></script>
+        <script src="/assets/js/bootstrap-transition.js"></script>
+        <script src="/assets/js/bootstrap-alert.js"></script>
+        <script src="/assets/js/bootstrap-modal.js"></script>
+        <script src="/assets/js/bootstrap-dropdown.js"></script>
+        <script src="/assets/js/bootstrap-scrollspy.js"></script>
+        <script src="/assets/js/bootstrap-tab.js"></script>
+        <script src="/assets/js/bootstrap-tooltip.js"></script>
+        <script src="/assets/js/bootstrap-popover.js"></script>
+        <script src="/assets/js/bootstrap-button.js"></script>
+        <script src="/assets/js/bootstrap-collapse.js"></script>
+        <script src="/assets/js/bootstrap-carousel.js"></script>
+        <script src="/assets/js/bootstrap-typeahead.js"></script>
+    {% endblock javascript %}
+  </head>
+
+  <body>
+    {% block header %}
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="/about">Movie Sentiment Analyzer</a>
+              <div class="nav-collapse">
+                <ul class="nav">
+                  <li class="active"><a href="/">Home</a></li>
+                </ul>
+              </div><!--/.nav-collapse -->
+                <form class="navbar-search pull-right" action="" method="POST">
+                  {% csrf_token %}
+                  <input class="search-query span2" type="search" name="query"
+                      placeholder="{% if query %}{{ query }}{% else %}Search movie{% endif %}">
+                </form>
+             </div>
+            </div>
+          </div>
+        </div>
+    {% endblock header %}
+
+    <div class="container">
+        <div class="hero-unit">
+            {% block content %}
+            <!-- This will be filled up in the templates that inherit this template -->
+            {% endblock content %}
+
+            {% block footer %}
+                <section id="lines"><hr></section>
+                <section id="footer">
+                     Provided by AI
+                </section>
+            {% endblock footer %}
+        </div>
+    </div> <!-- /container -->
+
+  </body>
+</html>
+

@@ -1,0 +1,15 @@
+{% extends "movie_reviews/base.html" %}
+
+{% block content %}
+
+<section id="gridSystem">
+    <p>
+    Reviews Sentiment Analyzer is an engine that analyzes the sentiment of the reviews on a given movie name. When a search query is given it fetches the reviews live from Bing search engine, analyzes them and displays the results along with the charts representing the sentiment. When a search query is given, it classifies context based subjective reviews as positive, negative and presents them to the user, helping one to identify the sentiment of the review world at real time.
+    </p>
+
+    <p>
+    This engine is written in Python, Scikit-Learn and NLTK on top of NumPy and SciPy stack. It uses Django for webserver backend. The source code of this project is publicly available at https://github.com/ under Apache License v2.0.
+    </p>
+</section>
+
+{% endblock content %}

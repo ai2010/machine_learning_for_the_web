@@ -1,0 +1,16 @@
+{% extends "movie_reviews/base.html" %}
+
+{% block content %}
+<h2 align = Center>PageRank of movie reviews</h2>
+{% if no_links %}
+ <p align = Center><strong> No data links available. Please scrape movie links before proceed. </strong></p>
+{% else %}
+<section id="gridSystem">
+{% for page in pages %}
+<div class="row show-grid">
+	<p align = Center><strong> Url: {{ page.url }} pagerank: {{ page.new_rank }} </strong></p>
+</div>
+{% endfor %}
+</section>
+{% endif %}
+{% endblock content %}
