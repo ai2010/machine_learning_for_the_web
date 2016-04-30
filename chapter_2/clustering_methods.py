@@ -4,8 +4,6 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.cluster.hierarchy import fcluster
 from sklearn.cluster import KMeans
 from sklearn.cluster import MeanShift
-from sklearn.metrics import homogeneity_completeness_v_measure
-from sklearn.metrics import silhouette_score
 from matplotlib import pyplot as plt
 # generate two clusters: a with 100 points, b with 50:
 np.random.seed(4711)  # for repeatability 
@@ -32,10 +30,10 @@ ax.set_ylabel('y',fontsize=30)
 fig.suptitle('classes',fontsize=30)
 labels = np.concatenate((l1,l2),)
 X = np.concatenate((c1, c2),)
-print X.shape  # 150 samples with 2 dimensions
-plt.scatter(X[:,0], X[:,1],c=labels,cmap='prism',s=50)
+pp1= ax.scatter(c1[:,0], c1[:,1],cmap='prism',s=50,color='r')
+pp2= ax.scatter(c2[:,0], c2[:,1],cmap='prism',s=50,color='g')
+ax.legend((pp1,pp2),('class 1', 'class2'),fontsize=35)
 fig.savefig('classes.png')
-#plt.show()
 
 
 #start figure
