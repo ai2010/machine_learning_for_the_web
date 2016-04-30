@@ -1,0 +1,13 @@
+{% extends "books_recsys_app/base.html" %}
+
+{% block content %}
+        <form action="{% url 'auth' %}" method="POST">
+            {% csrf_token %}
+            <h2 align = Center>Sign In </h2>
+            <p> <br><br></p>
+            <p align = Center><input type="search" class="span3" placeholder="name" name="name" id="search" autofocus /> </p>
+            <p align = Center><input type="search" class="span3" placeholder="password" name="pwd" id="search" autofocus /> </p>
+            <p align = Center><button type="submit" class="btn btn-primary btn-large pull-center">Sign in &raquo;</button></p>
+        </form>  
+
+{% endblock content %}

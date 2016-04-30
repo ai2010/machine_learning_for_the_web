@@ -1,0 +1,12 @@
+{% extends "books_recsys_app/base.html" %}
+
+{% block content %}
+        <form action="{% url 'home' %}" method="POST">
+            {% csrf_token %}
+            <h2 align = Center>Search for movies to rate (title, actor, description etc.) </h2>
+            <p> <br><br></p>
+            <p align = Center><input type="search" class="span3" placeholder="title, actor, description etc." name="data" id="search" autofocus /> </p>
+            <p align = Center><button type="submit" class="btn btn-primary btn-large pull-center">Search &raquo;</button></p>
+        </form>  
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "addressesapp/base.html" %}
+
+{% block content %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h2 align = Center>Add person to address book </h2>
+            <p> <br><br></p>
+            <p align = Center><input type="search" class="span3" placeholder="person" name="name" id="search" autofocus /> </p>
+            <p align = Center><input type="search" class="span3" placeholder="email" name="email" id="search" autofocus /> </p>
+            <p align = Center><button type="submit" class="btn btn-primary btn-large pull-center">Add &raquo;</button></p>
+        </form>  
+
+{% endblock content %}

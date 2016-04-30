@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Movie Recommendations App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% block stylesheets %}
+        <!-- Bootstrap provided CSS files. -->
+        <link href="/static/css/bootstrap.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+        </style>
+        <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+    {% endblock stylesheets %}
+
+    {% block javascript %}
+
+        <!-- Bootstrap related javascript files -->
+     
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/bootstrap-transition.js"></script>
+        <script src="/static/js/bootstrap-alert.js"></script>
+        <script src="/static/js/bootstrap-modal.js"></script>
+        <script src="/static/js/bootstrap-dropdown.js"></script>
+        <script src="/static/js/bootstrap-scrollspy.js"></script>
+        <script src="/static/js/bootstrap-tab.js"></script>
+        <script src="/static/js/bootstrap-tooltip.js"></script>
+        <script src="/static/js/bootstrap-popover.js"></script>
+        <script src="/static/js/bootstrap-button.js"></script>
+        <script src="/static/js/bootstrap-collapse.js"></script>
+        <script src="/static/js/bootstrap-carousel.js"></script>
+        <script src="/static/js/bootstrap-typeahead.js"></script>
+    {% endblock javascript %}
+  </head>
+
+  <body>
+    {% block header %}
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+	              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	              </a>
+                  <div class="nav-collapse">
+    	                <ul class="nav">
+    	                  <li class="active"><a href="/">Home</a></li>
+    	                  <li class=""><a href="/movies-recs">Recommendations</a></li>
+    	                </ul>
+                  </div>
+	              <div>
+		                <form class="navbar-search pull-left" action="{% url 'home' %}" method="POST">
+		                  {% csrf_token %}
+		                   <div style="overflow: hidden; padding-right: .5em;">
+		                     <input type="text" name="data" style="width: 70%;" />
+		                     <input type="submit" name="search" value="search" size="30" style="float: right" />
+		                    </div>
+		                </form>
+	             </div>
+
+               {% if user.is_authenticated %}
+                <form class="navbar-search pull-right" action="{% url 'home' %}" method="GET">
+                    <ul class="nav">
+                       <div style="overflow: hidden; padding-right: .5em;">
+                         <li style="background-color:#C92525;font-size:14px" class="">{{user.get_username}} </li>
+                         <li class=""><a href="/signout">sign out</a></li>
+                        </div>
+                    </ul>
+                </form>
+                {% else %}
+                <form class="navbar-search pull-right" action="{% url 'auth' %}" method="GET">
+                  {% csrf_token %}
+                   <div style="overflow: hidden; padding-right: .5em;">
+                     <input type="submit" name="auth_method" value="sign up" size="30" style="float: right" />
+                     <input type="submit" name="auth_method" value="sign in" size="30" style="float: right" />
+                    </div>
+                </form>                
+                {% endif %}
+            </div>
+          </div>
+        </div>
+    {% endblock header %}
+
+    <div class="container">
+        <div class="hero-unit">
+            {% block content %}
+            {% endblock content %}
+
+            {% block footer %}
+                <section id="lines"><hr></section>
+                <section id="footer">
+                     Provided by AI
+                </section>
+            {% endblock footer %}
+        </div>
+    </div> 
+
+  </body>
+</html>
+

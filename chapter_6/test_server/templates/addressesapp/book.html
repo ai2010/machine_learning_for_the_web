@@ -1,0 +1,20 @@
+{% extends "addressesapp/base.html" %}
+
+{% block content %}
+<h2 align = Center>Email address book</h2>
+<P align=Center>[
+{% for letter in alphabet %}
+<a href="{% url 'addressesbook'  %}?letter={{letter}}" > {{letter}} </a>
+{% endfor %}
+|<a href="addressesapp/book.html"> Index </a> ] </P>
+<section id="gridSystem">
+{% for contact in contacts %}
+<div class="row show-grid">
+	<p align = Center><strong> name: </strong>{{ contact.name }} <strong>email:</strong> {{ contact.mail }}&nbsp&nbsp&nbsp&nbsp
+        <a class="right" href="{% url 'delete_person' contact.name  %}" >   delete </a>
+    </p>
+</div>
+{% endfor %}
+</section>
+
+{% endblock content %}

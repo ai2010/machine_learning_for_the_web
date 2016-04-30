@@ -1,0 +1,14 @@
+{% extends "books_recsys_app/base.html" %}
+
+{% block content %}
+<h2 align = Center>Recommendations</h2>
+
+<section id="gridSystem">
+{% for rec in recs %}
+<div class="row show-grid">
+	<p align = Center><strong> movie: </strong>{{ rec }} &nbsp&nbsp&nbsp&nbsp </p>
+</div>
+{% endfor %}
+</section>
+
+{% endblock content %}

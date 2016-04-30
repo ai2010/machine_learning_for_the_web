@@ -1,0 +1,17 @@
+{% extends "books_recsys_app/base.html" %}
+
+{% block content %}
+<h2 align = Center>Results</h2>
+
+<section id="gridSystem">
+{% for movie,movieindx in movies %}
+<div class="row show-grid">
+	<p align = Center><strong> name: </strong>{{ movie }} &nbsp&nbsp&nbsp&nbsp <strong>   rate: </strong>
+    {% for vote in rates %}
+    <a href="{% url 'rate_movie'  %}?vote={{vote}}&movies={{movies}}&movie={{movie}}&movieindx={{movieindx}}" method="GET"> {{vote}} </a>
+    {% endfor %} </p>
+</div>
+{% endfor %}
+</section>
+
+{% endblock content %}
