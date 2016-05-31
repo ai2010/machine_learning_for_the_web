@@ -12,7 +12,6 @@ SECRET_KEY = '7+x@zcsa)+8i1&y(3kd!zk0fw9q%&ii=tkn7p@3y^#lkoq%186'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
 
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
@@ -24,12 +23,39 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/assets/'
 
 
+#django 1.7
+TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'templates'),
 )
+#django 1.9
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
 
 ALLOWED_HOSTS = []
 

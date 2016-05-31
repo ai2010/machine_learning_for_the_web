@@ -156,19 +156,21 @@ class CF_itembased(object):
             rating = np.round(self.data[:,r][self.data[:,r]>0].mean(),0)
         return rating
         
-    def CalcRatings(self,u_vec,K):
+    def CalcRatings(self,u_vec,K,indxs=False):
         u_rec = copy.copy(u_vec)
         for r in xrange(len(u_vec)):
             if u_vec[r]==0:
                neighitems = self.GetKSimItemsperUser(r,K,u_vec)
                #calc predicted rating
                u_rec[r] = self.CalcRating(r,u_vec,neighitems)
-        #take out the rated movies
-        seenindxs = [indx for indx in xrange(len(u_vec)) if u_vec[indx]>0]
-        u_rec[seenindxs]=-1
-        recsvec = np.argsort(u_rec)[::-1][np.argsort(u_rec)>0]
+        if indxs:
+            #take out the rated movies
+            seenindxs = [indx for indx in xrange(len(u_vec)) if u_vec[indx]>0]
+            u_rec[seenindxs]=-1
+            recsvec = np.argsort(u_rec)[::-1][np.argsort(u_rec)>0]
         
-        return recsvec
+            return recsvec
+        return u_rec
         
 class LogLikelihood(object):
     def __init__(self,Umatrix,Movieslist,likethreshold=3):

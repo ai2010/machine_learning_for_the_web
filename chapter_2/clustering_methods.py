@@ -81,9 +81,9 @@ axis3.set_title('gaussian mixture',fontsize=20)
 #hierarchical
 # generate the linkage matrix
 Z = linkage(X, 'ward')
-max_d = 110
+max_d = 20
 pred_h = fcluster(Z, max_d, criterion='distance')
-print 'h:',np.unique(pred_h)
+print 'clusters:',np.unique(pred_h)
 k=2
 fcluster(Z, k, criterion='maxclust')
 print 'h:',homogeneity_completeness_v_measure(labels,pred_h)
