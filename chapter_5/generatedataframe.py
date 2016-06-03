@@ -37,7 +37,7 @@ dfout.to_csv('data/utilitymatrix.csv',index=None)
 
 #matrix movies's content
 movieslist = [int(m.split(';')[-1]) for m in dfout.columns[1:]]
-moviescats = ['unknown','Action','Adventure','Animation','Children\'s','Comedy','Crime','Documentary',' Drama','Fantasy','Film-Noir','Horror','Musical','Mystery','Romance','Sci-Fi','              Thriller','War','Western']
+moviescats = ['unknown','Action','Adventure','Animation','Children\'s','Comedy','Crime','Documentary','Drama','Fantasy','Film-Noir','Horror','Musical','Mystery','Romance','Sci-Fi','Thriller','War','Western']
 dfout_movies =  pd.DataFrame(columns=['movie_id']+moviescats)
 startcatsindx = 5
 cnt= 0
