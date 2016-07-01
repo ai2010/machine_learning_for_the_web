@@ -28,7 +28,7 @@ import logging
 
 
 # Bing API key
-API_KEY = "X/+6jgJS0FkPGql4w7tphwJh2dj+trSqXxcnbSZUHPc"
+API_KEY = "yourkeyhere"
 
 #PARAMETERS
 test_mode = False
