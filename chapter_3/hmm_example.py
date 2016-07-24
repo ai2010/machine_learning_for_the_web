@@ -193,8 +193,8 @@ if __name__ == '__main__':
     
     hmmguess.train(np.array([0,1,0,2]),0.000001)
 
-    print 'Estimated initial probabilities\n',hmmguess.pi
+    print 'Estimated initial probabilities:',hmmguess.pi
 
-    print 'Estimated state transition probabililities\n',hmmguess.A
+    print 'Estimated state transition probabililities:',hmmguess.A
 
-    print 'Estimated observation probabililities\n',hmmguess.B
+    print 'Estimated observation probabililities:',hmmguess.B
