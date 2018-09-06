@@ -1,0 +1,17 @@
+Django                             1.11.15
+django-rest-swagger                2.2.0
+djangorestframework                3.8.2
+Flask                              1.0.2
+numpy                              1.14.5
+pandas                             0.23.3
+pip                                10.0.1
+request                            1.0.2
+requests                           2.19.1
+scikit-learn                       0.19.2
+scipy                              1.1.0
+setuptools                         39.2.0
+simplejson                         3.16.0
+nltk                               3.3.0
+jsonfield                          2.0.2
+BeautifulSoup                      3.2.1
+django-markdown                    0.8.4
