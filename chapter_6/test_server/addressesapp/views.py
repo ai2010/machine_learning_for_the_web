@@ -30,12 +30,12 @@ def main(request):
         data= get_data.get('q',None)
         if not data:
             return render_to_response(
-                'addressesapp/home.html', RequestContext(request, context))
+                'addressesapp/home.html', context)
         data = literal_eval(get_data.get('q',None))
         print data
         if not data['name'] and not data['email']:
             return render_to_response(
-                'addressesapp/home.html', RequestContext(request, context))
+                'addressesapp/home.html', context)
                 
         #add person to emails address book or update
         if Person.objects.filter(name=data['name']).exists():
@@ -50,7 +50,7 @@ def main(request):
             
         #restart page
         return render_to_response(
-            'addressesapp/home.html', RequestContext(request, context))   
+            'addressesapp/home.html', context)   
             
 def addressesbook(request):
     context = {}
@@ -67,7 +67,7 @@ def addressesbook(request):
     alphabetstring='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     context['alphabet']=[l for l in alphabetstring]
     return render_to_response(
-        'addressesapp/book.html', RequestContext(request, context)) 
+        'addressesapp/book.html', context)
 
 def sort_lower(lst, key_name):
     return sorted(lst, key=lambda item: getattr(item, key_name).lower())
@@ -83,7 +83,7 @@ def delete_person(request,name):
     contacts = sort_lower(contacts,"name")#contacts.order_by("name")
     context['contacts']=contacts   
     return render_to_response(
-        'addressesapp/book.html', RequestContext(request, context))
+        'addressesapp/book.html', context)
       
 def get_contacts(request):
     logging.debug('here')
@@ -93,7 +93,7 @@ def get_contacts(request):
         print 'get contacts:',data
         if data == '':
             return render_to_response(
-               'addressesapp/nopersonfound.html', RequestContext(request, {}))
+               'addressesapp/nopersonfound.html',  {})
         else:
             return redirect('%s?%s' % (reverse('addressesapp.views.addressesbook'),
                                 urllib.urlencode({'letter': data})))
@@ -101,6 +101,6 @@ def get_contacts(request):
 def notfound(request):
     context ={}
     return render_to_response(
-       'addressesapp/nopersonfound.html', RequestContext(request, context))
+       'addressesapp/nopersonfound.html', context)
      
         

@@ -6,10 +6,10 @@ import json
 import pandas as pd
 import requests
 
-#python  manage.py get_plotsfromtitles --input=/Users/andrea/Desktop/book_packt/chapters/5/data/utilitymatrix.csv --outputplots=plots.csv --outputumatrix='umatrix.csv'
+#python  manage.py get_plotsfromtitles --input=/Users/andrea/Desktop/book_packt/chapters_5/data/utilitymatrix.csv --outputplots=plots.csv --outputumatrix='umatrix.csv'
 class Command(BaseCommand):
-
-    option_list = BaseCommand.option_list + (
+    '''
+    option_list = BaseCommand.add_arguments() + (
             optparse.make_option('-i', '--input', dest='umatrixfile',
                                  type='string', action='store',
                                  help=('Input utility matrix')),   
@@ -20,7 +20,24 @@ class Command(BaseCommand):
                                  type='string', action='store',
                                  help=('output file')),                             
         )
-        
+    '''
+    
+    def add_arguments(self, parser):
+
+            parser.add_argument(
+                '--input',
+            action='store',
+            help='Input utility matrix')
+            
+            parser.add_argument(
+                '--outputplots', 
+                 action='store',
+                 help='output file')
+
+            parser.add_argument(
+                '--outputumatrix',
+                 action='store',
+                 help='output file')
         
     def getplotfromomdb(self,col,df_moviesplots,df_movies,df_utilitymatrix):
         string = col.split(';')[0]
@@ -46,7 +63,8 @@ class Command(BaseCommand):
         return df_moviesplots,df_utilitymatrix
     
     def handle(self, *args, **options):
-        pathutilitymatrix = options['umatrixfile']
+        print options
+        pathutilitymatrix = options['input']
         df_movies = pd.read_csv(pathutilitymatrix)
         movieslist = list(df_movies.columns[1:])
         
@@ -60,8 +78,8 @@ class Command(BaseCommand):
             df_moviesplots,df_utilitymatrix=self.getplotfromomdb(m,df_moviesplots,df_movies,df_utilitymatrix)
             
         print len(df_movies.columns),'--',len(df_utilitymatrix.columns)
-        outputfile = options['plotsfile']
+        outputfile = options['outputplots']
         df_moviesplots.to_csv(outputfile, index=False)
-        outumatrixfile = options['umatrixoutfile']
+        outumatrixfile = options['outputumatrix']
         df_utilitymatrix.to_csv(outumatrixfile, index=False)
             

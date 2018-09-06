@@ -29,12 +29,6 @@ INSTALLED_APPS = (
     'books_recsys_app',
 )
 
-
-#django 1.7
-TEMPLATE_DEBUG = True
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
 #django 1.9
 TEMPLATES = [
     {
@@ -55,6 +49,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug' : True
         },
     },
 ]

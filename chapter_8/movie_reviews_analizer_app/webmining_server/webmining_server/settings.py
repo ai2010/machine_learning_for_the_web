@@ -22,15 +22,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'assets')
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/assets/'
 
-
-#django 1.7
-TEMPLATE_DEBUG = True
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'templates'),
-)
 #django 1.9
 TEMPLATES = [
     {
@@ -50,7 +41,9 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
+            'debug': True
         },
     },
 ]

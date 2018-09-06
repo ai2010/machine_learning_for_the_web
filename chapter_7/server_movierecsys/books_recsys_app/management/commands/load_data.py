@@ -24,6 +24,7 @@ from django.core.cache import cache
 #python manage.py load_data --input=plots.csv --nmaxwords=30000  --umatrixfile=umatrix.csv
 class Command(BaseCommand):
 
+    '''
     option_list = BaseCommand.option_list + (
             optparse.make_option('-i', '--input', dest='input',
                                  type='string', action='store',
@@ -35,6 +36,26 @@ class Command(BaseCommand):
                                  type='string', action='store',
                                  help=('umatrixfile')),                                                               
         )
+    '''
+    
+    def add_arguments(self, parser):
+
+            parser.add_argument(
+                '--input',
+            action='store',
+            help='Input plots file')
+            
+            parser.add_argument(
+                '--nmaxwords',
+            action='store',
+            type = int,
+            help='nmaxwords')
+            
+            parser.add_argument(
+                '--umatrixfile',
+            action='store',
+            help='umatrixfile')
+            
         
     def PreprocessTfidf(self,texts,stoplist=[],stem=False):
         newtexts = []
@@ -65,6 +86,7 @@ class Command(BaseCommand):
         MovieData.objects.all().delete()
         
         matr = np.empty([1,ndims])
+        print ndims
         titles = []
         cnt=0
         for m in xrange(nmovies):
@@ -74,8 +96,7 @@ class Command(BaseCommand):
             moviedata.ndim= ndims
             moviedata.array=json.dumps(vec_tfidf[m].toarray()[0].tolist())
             moviedata.save()
-            newrow = moviedata.array
-            #print newrow
+            newrow = json.loads(moviedata.array)
             if cnt==0:
                 matr[0]=newrow
             else:

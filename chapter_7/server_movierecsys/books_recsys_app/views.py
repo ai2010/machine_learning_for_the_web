@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+#from django.template import RequestContext
 from django.template import loader
 from ast import literal_eval
 import urllib
@@ -87,7 +87,7 @@ def home(request):
             print 'loaded',str(len(titles))
           
         Umatrix = cache.get('umatrix')
-        if Umatrix==None:
+        if Umatrix.any()==None:
             df_umatrix = pd.read_csv(umatrixpath)
             Umatrix = df_umatrix.values[:,1:]
             print 'umatrix:',Umatrix.shape
@@ -98,7 +98,7 @@ def home(request):
             
         if not data:
             return render_to_response(
-                'books_recsys_app/home.html', RequestContext(request, context))
+                'books_recsys_app/home.html',  context)
         
         
         #load all movies vectors/titles
@@ -126,7 +126,7 @@ def home(request):
         context['movies']= zip(titles_query,indxs_sims[:nmoviesperquery])
         context['rates']=[1,2,3,4,5]
         return render_to_response(
-            'books_recsys_app/query_results.html', RequestContext(request, context))
+            'books_recsys_app/query_results.html',  context)
         
 def auth(request):
     print 'auth--:',request.user.is_authenticated()
@@ -135,10 +135,10 @@ def auth(request):
         auth_method = data.get('auth_method')
         if auth_method=='sign in':
            return render_to_response(
-               'books_recsys_app/signin.html', RequestContext(request, {})) 
+               'books_recsys_app/signin.html',  {})
         else:    
             return render_to_response(
-                'books_recsys_app/createuser.html', RequestContext(request, {}))
+                'books_recsys_app/createuser.html', {})
     elif request.method == 'POST':
         post_data = request.POST
         name = post_data.get('name', None)
@@ -149,7 +149,7 @@ def auth(request):
         if name and pwd and create:
            if User.objects.filter(username=name).exists() or pwd!=pwd1:
                return render_to_response(
-                   'books_recsys_app/userexistsorproblem.html', RequestContext(request))
+                   'books_recsys_app/userexistsorproblem.html', request)
            user = User.objects.create_user(username=name,password=pwd)
            uprofile = UserProfile()
            uprofile.user = user
@@ -158,22 +158,22 @@ def auth(request):
            user = authenticate(username=name, password=pwd)
            login(request, user)
            return render_to_response(
-               'books_recsys_app/home.html', RequestContext(request))
+               'books_recsys_app/home.html', request)
         elif name and pwd:
             user = authenticate(username=name, password=pwd)
             if user:
                 login(request, user)
                 return render_to_response(
-                    'books_recsys_app/home.html', RequestContext(request))
+                    'books_recsys_app/home.html', request)
             else:
                 #notfound
                 return render_to_response(
-                    'books_recsys_app/nopersonfound.html', RequestContext(request))
+                    'books_recsys_app/nopersonfound.html', request)
                     
 def signout(request):
     logout(request)
     return render_to_response(
-        'books_recsys_app/home.html', RequestContext(request))   
+        'books_recsys_app/home.html', request) 
         
 def RemoveFromList(liststrings,string):
     outlist = []
@@ -194,12 +194,12 @@ def rate_movie(request):
     userprofile = None
     if request.user.is_superuser:
         return render_to_response(
-            'books_recsys_app/superusersignin.html', RequestContext(request))
+            'books_recsys_app/superusersignin.html', request)
     elif request.user.is_authenticated() :
         userprofile = UserProfile.objects.get(user=request.user)
     else:
         return render_to_response(
-            'books_recsys_app/pleasesignin.html', RequestContext(request))
+            'books_recsys_app/pleasesignin.html', request)
     
     if MovieRated.objects.filter(movie=movie).filter(user=userprofile).exists():
         mr = MovieRated.objects.get(movie=movie,user=userprofile)
@@ -222,7 +222,7 @@ def rate_movie(request):
     context["movies"] = zip(movies,moviesindxs)
     context["rates"] = [1,2,3,4,5]
     return render_to_response(
-        'books_recsys_app/query_results.html', RequestContext(request, context))
+        'books_recsys_app/query_results.html', context)
         
 def movies_recs(request):
     
@@ -230,12 +230,12 @@ def movies_recs(request):
     print 'uuuu:',request.user.is_superuser
     if request.user.is_superuser:
         return render_to_response(
-            'books_recsys_app/superusersignin.html', RequestContext(request))
+            'books_recsys_app/superusersignin.html',{})
     elif request.user.is_authenticated():
         userprofile = UserProfile.objects.get(user=request.user)
     else:
         return render_to_response(
-            'books_recsys_app/pleasesignin.html', RequestContext(request))
+            'books_recsys_app/pleasesignin.html', {})
     ratedmovies=userprofile.ratedmovies.all()
     print 'rated:',ratedmovies,'--',[r.movieindx for r in ratedmovies]
     context = {}
@@ -243,7 +243,7 @@ def movies_recs(request):
         context['nrates'] = len(ratedmovies)
         context['nminimumrates']=nminimumrates
         return render_to_response(
-            'books_recsys_app/underminimum.html', RequestContext(request, context))
+            'books_recsys_app/underminimum.html', context)
             
     u_vec = np.array(userprofile.array)
     #print 'uu:',u_vec
@@ -274,7 +274,7 @@ def movies_recs(request):
     userprofile.save(recsvec=u_rec)
     context['recs'] = list(np.array(movieslist)[list(u_rec)][:numrecs])
     return render_to_response(
-        'books_recsys_app/recommendations.html', RequestContext(request, context))
+        'books_recsys_app/recommendations.html', context)
 
 from scipy.stats import pearsonr
 from scipy.spatial.distance import cosine 

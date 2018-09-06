@@ -110,7 +110,7 @@ def analyzer(request):
         query = get_data.get('q')
         if not query:
             return render_to_response(
-                'movie_reviews/home.html', RequestContext(request, context))
+                'movie_reviews/home.html', context)
 
         context['query'] = query
         stripped_query = query.strip().lower()
@@ -123,7 +123,7 @@ def analyzer(request):
            
         if len(urls)== 0:
            return render_to_response(
-               'movie_reviews/noreviewsfound.html', RequestContext(request, context))
+               'movie_reviews/noreviewsfound.html', context)
                
         print 'urls:',str(urls[:num_reviews])
         if not SearchTerm.objects.filter(term=stripped_query).exists():
@@ -146,7 +146,7 @@ def analyzer(request):
         if len(pages) == 0:
            s.delete()
            return render_to_response(
-               'movie_reviews/noreviewsfound.html', RequestContext(request, context))
+               'movie_reviews/noreviewsfound.html', context)
                
         s.num_reviews = len(pages)
         s.save()
@@ -243,7 +243,7 @@ def analyzer(request):
         context['classified_information'] = True
 
     return render_to_response(
-        'movie_reviews/home.html', RequestContext(request, context))
+        'movie_reviews/home.html', context)
 
 def pgrank_view(request,pk): 
     context = {}
@@ -265,7 +265,7 @@ def pgrank_view(request,pk):
     if len(links)==0:
        context['no_links'] = True
        return render_to_response(
-           'movie_reviews/pg-rank.html', RequestContext(request, context))
+           'movie_reviews/pg-rank.html', context)
     #calc pgranks
     pgrank(pk)
     #load pgranks in descending order of pagerank
@@ -273,4 +273,4 @@ def pgrank_view(request,pk):
     context['pages'] = pages_ordered
     
     return render_to_response(
-        'movie_reviews/pg-rank.html', RequestContext(request, context)) 
+        'movie_reviews/pg-rank.html',  context)
