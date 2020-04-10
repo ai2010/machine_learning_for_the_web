@@ -1,12 +1,15 @@
 import datetime
 import os
-import urllib2
+import subprocess
 import urllib
+from urllib import request, error, parse
+import http.client, urllib.parse
 import numpy
 import json
+from ast import literal_eval
 from django.shortcuts import render
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
@@ -24,11 +27,12 @@ from nltk.metrics import BigramAssocMeasures
 from nltk.probability import FreqDist, ConditionalFreqDist
 import collections
 import logging
+import base64
 
 
 
 # Bing API key
-API_KEY = "yourkeyhere"
+API_KEY = "2d8cf23392f94dff885c0bd04f6cff9d"
 
 #PARAMETERS
 test_mode = False
@@ -43,57 +47,84 @@ def about(request):
                           
 def bing_api(query):
     keyBing = API_KEY        # get Bing key from: https://datamarket.azure.com/account/keys
-    credentialBing = 'Basic ' + (':%s' % keyBing).encode('base64')[:-1] # the "-1" is to remove the trailing "\n" which encode adds
+    credentialBing = base64.b64encode(bytes(keyBing, encoding='utf8'))[:-1] # the "-1" is to remove the trailing "\n" which encode adds
     searchString = '%27X'+query.replace(" ",'+')+'movie+review%27'
     top = 50#maximum allowed by Bing
+    offset = 0
     
     reviews_urls = []
     if num_reviews<top:
+        
+
         offset = 0
-        url = 'https://api.datamarket.azure.com/Bing/Search/Web?' + \
-              'Query=%s&$top=%d&$skip=%d&$format=json' % (searchString, num_reviews, offset)
+        subscriptionKey = '2d8cf23392f94dff885c0bd04f6cff9d'
+        host = 'eastus.api.cognitive.microsoft.com'
+        path = '/bing/v7.0/search'
+        offset = 0
+        context = {}
+        context['query'] = query
+        params = '?q=' + urllib.parse.quote(query) + '&count=' + str(num_reviews) + '&offset=' + str(offset)
 
-        request = urllib2.Request(url)
-        request.add_header('Authorization', credentialBing)
-        requestOpener = urllib2.build_opener()
-        response = requestOpener.open(request) 
 
-        results = json.load(response)
-        reviews_urls = [ d['Url'] for d in results['d']['results']]
+        def get_suggestions ():
+            headers = {'Ocp-Apim-Subscription-Key': subscriptionKey}
+            conn = http.client.HTTPSConnection (host)
+            conn.request ("GET", path + params, None, headers)
+            response = conn.getresponse ()
+            return response.read()
+
+        result = get_suggestions ()
+        s = json.loads(result.decode('utf-8'))
+      
+        reviews_urls = []    
+         
+        for i in s["webPages"]["value"]:
+            reviews_urls.append(i["url"])
+        print(reviews_urls)    
+
+
+       
+           
     else:
         nqueries = int(float(num_reviews)/top)+1
-        for i in xrange(nqueries):
+        for i in range(nqueries):
             offset = top*i
             if i==nqueries-1:
                 top = num_reviews-offset
-                url = 'https://api.datamarket.azure.com/Bing/Search/Web?' + \
-                      'Query=%s&$top=%d&$skip=%d&$format=json' % (searchString, top, offset)
-
-                request = urllib2.Request(url)
-                request.add_header('Authorization', credentialBing)
-                requestOpener = urllib2.build_opener()
-                response = requestOpener.open(request) 
+                try:
+                    conn = http.client.HTTPSConnection('https://eastus.api.cognitive.microsoft.com')
+                    conn.request("GET", "/bing/v7.0/search?%s" % params, "{body}", headers)
+                    response = conn.getresponse()
+                    data = response.read()
+                    print(data)
+                    conn.close()
+   
+                except Exception as e:
+                    print("Error")
             else:
                 top=50
-                url = 'https://api.datamarket.azure.com/Bing/Search/Web?' + \
-                      'Query=%s&$top=%d&$skip=%d&$format=json' % (searchString, top, offset)
-
-                request = urllib2.Request(url)
-                request.add_header('Authorization', credentialBing)
-                requestOpener = urllib2.build_opener()
-                response = requestOpener.open(request)                
-            results = json.load(response)
+                try:
+                    conn = http.client.HTTPSConnection('https://eastus.api.cognitive.microsoft.com')
+                    conn.request("GET", "/bing/v7.0/search?%s" % params, "{body}", headers)
+                    response = conn.getresponse()
+                    data = response.read()
+                    conn.close()
+                 
+                except Exception as e:
+                    print("Error")
+                     
+            results = json.load(data)
             reviews_urls += [ d['Url'] for d in results['d']['results']]
             
-    print 'REVIEWS NUMBER:',len(reviews_urls)
+    print('REVIEWS NUMBER:',len(reviews_urls))
     return reviews_urls
 
 def parse_bing_results():
     file_data = open(os.path.dirname(__file__)+'/bing_the_martian_results.json','r')
     bing_json = json.load(file_data)
-    print len(bing_json['d']['results'])
+    print(len(bing_json['d']['results']))
     reviews_urls = [ d['Url'] for d in bing_json['d']['results']]
-    print reviews_urls
+    print(reviews_urls)
     return reviews_urls
             
 def analyzer(request):
@@ -104,13 +135,13 @@ def analyzer(request):
         query = post_data.get('query', None)
         if query:
             return redirect('%s?%s' % (reverse('webmining_server.views.analyzer'),
-                                urllib.urlencode({'q': query})))   
+                                urllib.parse.urlencode({'q': query})))   
     elif request.method == 'GET':
         get_data = request.GET
         query = get_data.get('q')
         if not query:
-            return render_to_response(
-                'movie_reviews/home.html', context)
+            return render(
+                request, 'movie_reviews/home.html')
 
         context['query'] = query
         stripped_query = query.strip().lower()
@@ -119,40 +150,48 @@ def analyzer(request):
         if test_mode:
            urls = parse_bing_results()
         else:
-           urls = bing_api(stripped_query)
-           
+           urls = bing_api(query)
+           print("urls: ", urls)
         if len(urls)== 0:
-           return render_to_response(
-               'movie_reviews/noreviewsfound.html', context)
+           return render(
+               request, 'movie_reviews/noreviewsfound.html')
                
-        print 'urls:',str(urls[:num_reviews])
-        if not SearchTerm.objects.filter(term=stripped_query).exists():
+        
+        if not SearchTerm.objects.filter(term=query).exists():
            s = SearchTerm(term=stripped_query)
            s.save()
+          
            try:
                #scrape
-               cmd = 'cd ../scrapy_spider & scrapy crawl scrapy_spider_reviews -a url_list=%s -a search_key=%s' %('\"'+str(','.join(urls[:num_reviews]).encode('utf-8'))+'\"','\"'+str(stripped_query)+'\"')
-               print 'cmd:',cmd
+               print('before')
+               cmd = 'cd ../scrapy_spider & scrapy crawl scrapy_spider_reviews -a url_list=%s -a search_key=%s' %('\"'+str(','.join(urls).encode('utf-8'))+'\"','\"' + str(query)+'\"')
                os.system(cmd)
+               print('after')
            except:
-               print 'error!'
-               s.delete()
+               print('error!')
+              
+            
+            
         else:
            #collect the pages already scraped 
            s = SearchTerm.objects.get(term=stripped_query)
-           
+     
         #calc num pages
-        pages = s.pages.all().filter(review=True)
+  
+        pages = s.objects.all().filter(review=True)
+        print("pages: ", pages)
+        print("s: ", len(pages))
+
         if len(pages) == 0:
            s.delete()
-           return render_to_response(
-               'movie_reviews/noreviewsfound.html', context)
+           return render(
+               request, 'movie_reviews/noreviewsfound.html')
                
         s.num_reviews = len(pages)
         s.save()
          
         context['searchterm_id'] = int(s.id)
-
+        #print(context['searchterm_id'])
 
         #train classifier with nltk
         def train_clf(method):
@@ -194,14 +233,14 @@ def analyzer(request):
  
             word_scores = {}
  
-            for word, freq in word_fd.iteritems():
+            for word, freq in word_fd.items():
                 pos_score = BigramAssocMeasures.chi_sq(label_word_fd['pos'][word],
                     (freq, pos_word_count), total_word_count)
                 neg_score = BigramAssocMeasures.chi_sq(label_word_fd['neg'][word],
                     (freq, neg_word_count), total_word_count)
                 word_scores[word] = pos_score + neg_score
  
-            best = sorted(word_scores.iteritems(), key=lambda (w,s): s, reverse=True)[:num_bestwords]
+            best = sorted(iter(word_scores.items()), key=lambda w_s: w_s[1], reverse=True)[:num_bestwords]
             bestwords = set([w for w, s in best])
             return bestwords
             
@@ -242,8 +281,8 @@ def analyzer(request):
         context['negative_count'] = cntneg
         context['classified_information'] = True
 
-    return render_to_response(
-        'movie_reviews/home.html', context)
+    return render(
+        request, 'movie_reviews/home.html')
 
 def pgrank_view(request,pk): 
     context = {}
@@ -258,19 +297,19 @@ def pgrank_view(request,pk):
             urls.append(u.url)
         #crawl
         cmd = 'cd ../scrapy_spider & scrapy crawl scrapy_spider_recursive -a url_list=%s -a search_id=%s' %('\"'+str(','.join(urls[:]).encode('utf-8'))+'\"','\"'+str(pk)+'\"')
-        print 'cmd:',cmd
+        print('cmd:',cmd)
         os.system(cmd)
 
     links = s.links.all()
     if len(links)==0:
        context['no_links'] = True
-       return render_to_response(
-           'movie_reviews/pg-rank.html', context)
+       return render(
+           request, 'movie_reviews/pg-rank.html')
     #calc pgranks
     pgrank(pk)
     #load pgranks in descending order of pagerank
     pages_ordered = s.pages.all().filter(review=True).order_by('-new_rank')
     context['pages'] = pages_ordered
     
-    return render_to_response(
-        'movie_reviews/pg-rank.html',  context)
+    return render(
+        request, 'movie_reviews/pg-rank.html')

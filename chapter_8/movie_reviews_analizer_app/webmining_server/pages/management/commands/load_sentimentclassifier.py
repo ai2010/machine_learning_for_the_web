@@ -68,14 +68,14 @@ class Command(BaseCommand):
 
         word_scores = {}
 
-        for word, freq in word_fd.iteritems():
+        for word, freq in word_fd.items():
             pos_score = BigramAssocMeasures.chi_sq(label_word_fd['pos'][word],
                 (freq, pos_word_count), total_word_count)
             neg_score = BigramAssocMeasures.chi_sq(label_word_fd['neg'][word],
                 (freq, neg_word_count), total_word_count)
             word_scores[word] = pos_score + neg_score
 
-        best = sorted(word_scores.iteritems(), key=lambda (w,s): s, reverse=True)[:num_bestwords]
+        best = sorted(iter(word_scores.items()), key=lambda w_s: w_s[1], reverse=True)[:num_bestwords]
         bestwords = set([w for w, s in best])
         return bestwords
 

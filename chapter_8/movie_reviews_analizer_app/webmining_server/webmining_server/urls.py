@@ -30,8 +30,8 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',analyzer),
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', webmining_server.views.analyzer, name='webmining_server.views.analyzer'),
     url(r'^pg-rank/(?P<pk>\d+)/',pgrank_view, name='pgrank_view'),
     url(r'^pages-sentiment/(?P<pk>\d+)/', PageCounts.as_view(), name='pages-sentiment'),
     url(r'^search-list/', SearchTermsList.as_view(), name='search-list'),

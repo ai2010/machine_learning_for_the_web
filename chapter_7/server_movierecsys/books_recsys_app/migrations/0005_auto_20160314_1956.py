@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from django.db import models, migrations
 import jsonfield.fields
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('array', jsonfield.fields.JSONField(default=dict)),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, unique=True)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True)),
             ],
             options={
             },
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='movierated',
             name='user',
-            field=models.ForeignKey(related_name='ratedmovies', to='books_recsys_app.UserProfile'),
+            field=models.ForeignKey(related_name='ratedmovies', on_delete=models.CASCADE, to='books_recsys_app.UserProfile'),
             preserve_default=True,
         ),
         migrations.AlterField(

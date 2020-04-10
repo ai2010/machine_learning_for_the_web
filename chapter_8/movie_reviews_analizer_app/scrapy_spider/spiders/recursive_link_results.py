@@ -4,7 +4,7 @@ usage: scrapy runspider recursive_link_results.py (or from root folder: scrapy c
 
 #from scrapy.spider import Spider
 from scrapy.selector import Selector
-from scrapy.contrib.spiders import CrawlSpider, Rule
+from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.http import Request
 
@@ -21,7 +21,7 @@ class Search(CrawlSpider):
         #REMARK is allowed_domains is not set then ALL are allowed
         self.start_urls = url_list.split(',')
         self.search_id = int(search_id)
-        
+      
         #allow any link but the ones with different font size(repetitions)
         self.rules = (
             Rule(LinkExtractor(allow=(),deny=('fontSize=*','infoid=*','SortBy=*', ),unique=True), callback='parse_item', follow=True), 
@@ -55,7 +55,7 @@ class Search(CrawlSpider):
             newpage['depth'] = depth
             newpage.save()#cant use pipeline cause the execution can finish here
             
-        print fromurl,'--title:',title,'-',response.url,' depth:',depth
+        print(fromurl,'--title:',title,'-',response.url,' depth:',depth)
         #print contents
         #if( int(depth)> 1):
         #   print fromurl,'--title:',title,'-',response.url,' depth:',depth

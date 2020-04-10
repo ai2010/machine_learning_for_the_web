@@ -14,7 +14,7 @@ class HMM:
         T = len(observations)
         sequences = [str(i) for i in range(N)]
         probs = np.array([self.pi[i]*self.B[i,observations[0]] for i in range(N)])
-        print probs
+        print(probs)
         for i in range(1,T):
             newsequences = []
             newprobs = np.array([])
@@ -24,7 +24,7 @@ class HMM:
                     bef = int(sequences[s][-1])
                     tTpprob = probs[s]*self.A[bef,j]*self.B[j,observations[i]]
                     newprobs = np.append(newprobs,[tTpprob]) 
-                    print sequences[s]+str(j),'-',tTpprob
+                    print(sequences[s]+str(j),'-',tTpprob)
             sequences = newsequences
             probs = newprobs
         return max((probs[i],sequences[i]) for i in range(len(sequences)))
@@ -187,14 +187,14 @@ if __name__ == '__main__':
     B = np.array([[0.7, 0.1, 0.2],
                            [0.1, 0.6, 0.3]])
     hmmguess = HMM(pi,A,B)
-    print 'Viterbi sequence:',hmmguess.ViterbiSequence(np.array([0,1,0,2]))
-    print 'max prob sequence:',hmmguess.maxProbSequence(np.array([0,1,0,2]))    
+    print('Viterbi sequence:',hmmguess.ViterbiSequence(np.array([0,1,0,2])))
+    print('max prob sequence:',hmmguess.maxProbSequence(np.array([0,1,0,2])))    
     #obs,states = hmmguess.simulate(4)
     
     hmmguess.train(np.array([0,1,0,2]),0.000001)
 
-    print 'Estimated initial probabilities:',hmmguess.pi
+    print('Estimated initial probabilities:',hmmguess.pi)
 
-    print 'Estimated state transition probabililities:',hmmguess.A
+    print('Estimated state transition probabililities:',hmmguess.A)
 
-    print 'Estimated observation probabililities:',hmmguess.B
+    print('Estimated observation probabililities:',hmmguess.B)

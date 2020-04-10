@@ -1,6 +1,7 @@
 #from django.conf.urls import patterns, include, url
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
 from books_recsys_app.api import UsersList
 import books_recsys_app.views
 import rest_framework_swagger
@@ -27,11 +28,11 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^$', home, name='home'),
+    url(r'^$', books_recsys_app.views.home, name='home'),
     url(r'^auth/', auth, name='auth'),   
     url(r'^signout/',signout,name='signout'),
     url(r'^rate_movie/',rate_movie,name='rate_movie'),
     url(r'^movies-recs/',movies_recs,name='movies_recs'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^users-list/',UsersList.as_view(),name='users-list')
 ]

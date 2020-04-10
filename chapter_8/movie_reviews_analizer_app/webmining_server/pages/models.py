@@ -11,7 +11,7 @@ class SearchTerm(models.Model):
             return self.term
 
 class Page(models.Model):
-     searchterm = models.ForeignKey(SearchTerm, related_name='pages',null=True,blank=True)
+     searchterm = models.ForeignKey(SearchTerm, on_delete=models.CASCADE,related_name='pages',null=True,blank=True)
      url = models.URLField(_('url'), default='', blank=True)
      title = models.CharField(_('name'), max_length=255)
      depth = models.IntegerField(null=True,default=-1)
@@ -23,6 +23,6 @@ class Page(models.Model):
      sentiment = models.IntegerField(null=True,default=100)
      
 class Link(models.Model):
-     searchterm = models.ForeignKey(SearchTerm, related_name='links',null=True,blank=True)
+     searchterm = models.ForeignKey(SearchTerm, on_delete=models.CASCADE,related_name='links',null=True,blank=True)
      from_id = models.IntegerField(null=True)
      to_id = models.IntegerField(null=True)

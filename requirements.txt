@@ -1,0 +1,17 @@
+matplotlib==2.2.4
+Django==1.11.29
+pandas==0.24.2
+scipy==1.2.2
+nltk==3.4.5
+django_rest_swagger==2.2.0
+requests==2.22.0
+numpy==1.16.4
+django_markdown==0.8.4
+beautifulsoup4==4.9.0
+django_jsonfield==1.4.0
+djangorestframework==3.11.0
+google_api_python_client==1.8.0
+newspaper==0.1.0.7
+scikit_learn==0.22.2.post1
+scrapy==2.0.1
+scrapy_djangoitem==1.1.1

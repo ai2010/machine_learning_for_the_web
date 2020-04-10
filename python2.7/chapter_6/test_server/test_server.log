@@ -1,0 +1,390 @@
+[08/Feb/2016 16:31:04] DEBUG [django.db.backends:91] (0.002) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:31:04] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:31:09] DEBUG [django.db.backends:91] (0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:31:09] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:31:21] DEBUG [django.db.backends:91] (0.002) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:32:20] DEBUG [django.db.backends:91] (0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:32:20] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:33:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] ERROR [django.request:231] Internal Server Error: /book/search/
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/andrea/Desktop/book_packt/chapters/6/test_server/addressesapp/views.py", line 73, in addressesbook
+    'addressesapp/book.html', RequestContext(request, context))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/shortcuts.py", line 23, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader.py", line 172, in render_to_string
+    return t.render(Context(dictionary))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 148, in render
+    return self._render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 551, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 468, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+NoReverseMatch: Reverse for '' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:34:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:36:00] DEBUG [django.db.backends:91] (0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:36:00] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:36:14] ERROR [django.request:231] Internal Server Error: /book/search/
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/andrea/Desktop/book_packt/chapters/6/test_server/addressesapp/views.py", line 73, in addressesbook
+    'addressesapp/book.html', RequestContext(request, context))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/shortcuts.py", line 23, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader.py", line 172, in render_to_string
+    return t.render(Context(dictionary))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 148, in render
+    return self._render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 551, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 468, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+NoReverseMatch: Reverse for '' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.002) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:14] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s LIMIT 21' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:37] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s' - PARAMS = (u'(^|\\s)n',); args=(u'(^|\\s)n',)
+[08/Feb/2016 16:36:40] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:36:53] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:36:54] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:36:54] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:37:15] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:37:16] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:37:17] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:37:57] DEBUG [django.db.backends:91] (0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:37:57] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] ERROR [django.request:231] Internal Server Error: /book/search/
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/andrea/Desktop/book_packt/chapters/6/test_server/addressesapp/views.py", line 73, in addressesbook
+    'addressesapp/book.html', RequestContext(request, context))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/shortcuts.py", line 23, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader.py", line 172, in render_to_string
+    return t.render(Context(dictionary))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 148, in render
+    return self._render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/debug.py", line 80, in render_node
+    return node.render(context)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/template/defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 551, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 415, in _reverse_with_prefix
+    self._populate()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/utils/lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 118, in get_callable
+    (lookup_view, mod_name))
+ViewDoesNotExist: Could not import addressesapp.views.get_contacts. View does not exist in module addressesapp.views.
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:37:58] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" LIMIT 21' - PARAMS = (); args=()
+[08/Feb/2016 16:38:13] DEBUG [django.db.backends:91] (0.002) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:38:13] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:38:26] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:40:27] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:41:53] DEBUG [django.db.backends:91] (0.002) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:41:57] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s' - PARAMS = (u'(^|\\s)U',); args=(u'(^|\\s)U',)
+[08/Feb/2016 16:47:11] DEBUG [django.db.backends:91] (0.002) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:47:11] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:47:18] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:21] DEBUG [django.db.backends:91] (0.002) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:53:21] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:26] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:27] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:28] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:28] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:31] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:40] DEBUG [django.db.backends:91] (0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:53:40] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:43] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:53:44] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:54:28] DEBUG [django.db.backends:91] (0.000) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 16:54:28] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 16:54:35] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:54:35] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:54:36] DEBUG [django.db.backends:91] (0.002) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:54:37] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:55:05] DEBUG [django.db.backends:91] (0.002) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:55:07] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:55:11] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s' - PARAMS = (u'(^|\\s)dd',); args=(u'(^|\\s)dd',)
+[08/Feb/2016 16:55:14] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s' - PARAMS = (u'(^|\\s)jj',); args=(u'(^|\\s)jj',)
+[08/Feb/2016 16:55:19] DEBUG [django.db.backends:91] (0.001) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person" WHERE "addressesapp_person"."name" REGEXP \'(?i)\' || %s' - PARAMS = (u'(^|\\s)nn',); args=(u'(^|\\s)nn',)
+[08/Feb/2016 16:55:21] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 16:55:23] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 17:16:18] DEBUG [django.db.backends:91] (0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 17:16:18] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 17:16:22] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 17:17:00] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+[08/Feb/2016 17:17:23] DEBUG [django.db.backends:91] (0.003) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[08/Feb/2016 17:17:23] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[08/Feb/2016 17:17:25] DEBUG [django.db.backends:91] (0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+(0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+(0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+(0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+(0.000) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+(0.000) QUERY = u'SELECT "addressesapp_person"."id", "addressesapp_person"."name", "addressesapp_person"."mobilephone", "addressesapp_person"."mail" FROM "addressesapp_person"' - PARAMS = (); args=()
+(0.001) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+(0.000) QUERY = "\n            SELECT name FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+2016-02-08 17:33:04,270 DEBUG root add book
+2016-02-08 17:34:00,421 DEBUG root add book
+2016-02-08 17:34:34,311 DEBUG root add book
+2016-02-08 17:35:14,313 DEBUG root add book
+2016-02-08 17:36:51,827 DEBUG root add book
+2016-02-08 17:38:06,211 DEBUG root add book
+2016-02-08 17:38:33,461 DEBUG root add book
+2016-02-08 17:39:16,945 DEBUG root add book
+2016-02-08 17:39:56,929 DEBUG root add book
+2016-02-08 17:40:05,344 DEBUG root add book
+2016-02-08 17:41:21,921 DEBUG root add book
+2016-02-08 17:42:56,951 DEBUG root add book
+2016-02-08 17:43:11,520 DEBUG root add book
+2016-02-08 17:43:35,438 DEBUG root add book
+2016-02-08 17:44:12,920 DEBUG root here
+2016-02-08 17:46:26,503 DEBUG root here
+2016-02-08 17:46:48,933 DEBUG root here
+2016-02-08 17:46:48,941 DEBUG root add book
+2016-02-08 17:47:24,153 DEBUG root add book
+2016-02-08 17:48:14,876 DEBUG root here
+2016-02-08 17:48:20,104 DEBUG root add book
+2016-02-08 17:49:25,261 DEBUG root add book
+2016-02-08 17:50:15,112 DEBUG root add book
+2016-02-08 17:53:39,882 DEBUG root add book
+2016-02-08 17:53:41,305 DEBUG root add book
+2016-02-08 17:54:05,817 DEBUG root add book
+2016-02-08 17:54:55,927 DEBUG root add book
+2016-02-08 17:54:57,064 DEBUG root add book
+2016-02-08 17:57:48,999 DEBUG root add book
+2016-02-08 17:57:49,950 DEBUG root add book
+2016-02-08 17:59:22,399 DEBUG root add book
+2016-02-08 17:59:26,300 DEBUG root add book
+2016-02-08 17:59:47,284 DEBUG root add book
+2016-02-08 18:00:08,451 DEBUG root add book
+2016-02-08 18:05:06,862 DEBUG root add book
+2016-02-08 18:05:07,986 DEBUG root add book
+2016-02-08 18:05:14,435 DEBUG root add book
+2016-02-08 18:06:38,261 DEBUG root add book
+2016-02-08 18:06:50,878 DEBUG root add book
+2016-02-08 18:07:06,533 DEBUG root add book
+2016-02-08 18:07:32,994 DEBUG root add book
+2016-02-08 18:08:09,778 DEBUG root add book
+2016-02-08 18:08:10,807 DEBUG root add book
+2016-02-08 18:10:17,859 DEBUG root add book
+2016-02-08 18:14:06,585 DEBUG root add book
+2016-02-08 18:14:08,066 DEBUG root add book
+2016-02-08 18:14:25,224 DEBUG root add book
+2016-02-08 18:14:35,736 DEBUG root add book
+2016-02-08 18:14:38,713 DEBUG root add book
+2016-02-08 18:14:47,243 DEBUG root add book
+2016-02-08 18:15:02,924 DEBUG root add book
+2016-02-08 18:37:04,142 DEBUG root add book
+2016-02-08 18:37:28,008 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,010 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,027 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,027 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,028 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,028 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,029 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,030 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,030 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,030 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,031 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,032 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,032 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,032 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-08 18:37:28,037 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-08 18:37:28,037 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-09 01:00:43,624 DEBUG root address book
+2016-02-09 01:00:58,434 DEBUG root address book
+2016-02-09 01:02:33,783 DEBUG root address book
+2016-02-09 01:02:40,828 DEBUG root address book
+2016-02-09 01:02:44,690 DEBUG root address book
+2016-02-09 01:09:14,187 DEBUG django.db.backends.schema CREATE TABLE "addressesapp_person__new" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(255) NOT NULL UNIQUE, "mail" varchar(255) NOT NULL); (params [])
+2016-02-09 01:09:14,189 DEBUG django.db.backends.schema INSERT INTO "addressesapp_person__new" ("mail", "id", "name") SELECT "mail", "id", "name" FROM "addressesapp_person"; (params [])
+2016-02-09 01:09:14,189 DEBUG django.db.backends.schema DROP TABLE "addressesapp_person"; (params [])
+2016-02-09 01:09:14,189 DEBUG django.db.backends.schema ALTER TABLE "addressesapp_person__new" RENAME TO "addressesapp_person"; (params [])
+2016-02-14 21:23:39,600 DEBUG root address book
+2016-02-15 00:11:54,955 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,957 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,958 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,958 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,959 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,960 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,960 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,960 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,960 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,961 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,961 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,962 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,962 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,963 DEBUG MARKDOWN Successfuly imported extension module "markdown.extensions.headerid".
+2016-02-15 00:11:54,963 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 00:11:54,963 DEBUG MARKDOWN Successfully loaded extension "markdown.extensions.headerid.HeaderIdExtension".
+2016-02-15 01:19:02,368 DEBUG root address book
+2016-02-15 01:19:12,449 DEBUG root address book
+2016-02-15 01:19:18,770 DEBUG root here
+2016-02-15 01:19:27,359 DEBUG root here
+2016-02-15 01:19:46,278 DEBUG root here
+2016-02-15 01:20:07,642 DEBUG root here
+2016-02-15 01:20:12,302 DEBUG root here
+2016-02-15 01:21:13,229 DEBUG root here
+2016-02-15 01:22:16,259 DEBUG root here
+2016-02-15 01:22:16,266 DEBUG root address book
+2016-02-15 01:22:17,501 DEBUG root here
+2016-02-15 01:26:07,894 DEBUG root here
+2016-02-15 01:26:07,906 DEBUG root address book
+2016-02-15 01:26:15,145 DEBUG root here
+2016-02-15 01:26:15,156 DEBUG root address book
+2016-02-15 01:26:20,196 DEBUG root here
+2016-02-15 01:26:20,220 DEBUG root address book
+2016-02-15 01:26:25,965 DEBUG root here
+2016-02-15 01:26:25,974 DEBUG root address book
+2016-02-15 01:33:15,822 DEBUG root address book
+2016-02-15 01:33:25,663 DEBUG root address book
+2016-02-15 01:34:08,929 DEBUG root address book
+2016-02-15 01:45:55,618 DEBUG root address book
+2016-02-15 01:45:57,111 DEBUG root address book
+2016-02-15 01:45:57,921 DEBUG root address book
+2016-02-15 01:49:25,168 DEBUG root address book
+2016-02-15 01:51:54,016 DEBUG root address book
+2016-02-15 01:51:58,105 DEBUG root address book
+2016-02-15 01:53:24,583 DEBUG root address book
+2016-02-15 01:53:31,512 DEBUG root address book
+2016-02-15 01:54:02,000 DEBUG root address book
+2016-02-15 01:56:51,881 DEBUG root address book
+2016-02-15 01:57:03,005 DEBUG root address book
+2016-02-15 01:57:08,985 DEBUG root address book
+2016-02-15 01:57:09,971 DEBUG root address book
+2016-05-30 11:28:15,508 DEBUG root address book
+2018-09-06 14:57:48,246 DEBUG root address book
+2018-09-06 14:57:52,476 DEBUG root address book
+2018-09-06 15:01:24,253 DEBUG root address book
+2018-09-06 15:01:27,130 DEBUG root here

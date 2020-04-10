@@ -35,5 +35,5 @@ class Command(BaseCommand):
          #crawl
          #print settings.BASE_DIR
          cmd = 'cd '+settings.BASE_DIR+'../scrapy_spider & scrapy crawl scrapy_spider_recursive -a url_list=%s -a search_id=%s' %('\"'+str(','.join(urls[:num_reviews]).encode('utf-8'))+'\"','\"'+str(searchid)+'\"')
-         print 'cmd:',cmd
+         print('cmd:',cmd)
          os.system(cmd)

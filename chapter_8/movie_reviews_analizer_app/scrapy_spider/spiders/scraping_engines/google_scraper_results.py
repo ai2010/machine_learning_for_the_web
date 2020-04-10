@@ -41,7 +41,7 @@ class Search(Spider):
         #self.name = 'scrapy_spyder'
         #self.allowed_domains = ['www.google.com']#no allowed_domains means ALL
         self.start_urls = sp_search_url_list#['http://www.allmovie.com/blog/post/the-martian-the-allmovie-review']
-        print self.start_urls
+        print(self.start_urls)
         
     def parse(self, response):
         ## Get the selector for xpath parsing
@@ -51,9 +51,9 @@ class Search(Spider):
 
         ## Display a list of the result link,scrape each link to extract content,title
         for n in google_search_links_list:
-            print 'site:',n
+            print('site:',n)
             
-        print 'num sites:',len(google_search_links_list)
+        print('num sites:',len(google_search_links_list))
         
 
 

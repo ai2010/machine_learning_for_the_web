@@ -5,7 +5,7 @@ import json
 import numpy as np
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
     array = jsonfield.JSONField()
     arrayratedmoviesindxs = jsonfield.JSONField()
     name = models.CharField(max_length=1000)
@@ -17,10 +17,11 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         create = kwargs.pop('create', None)
         recsvec = kwargs.pop('recsvec', None)
-        print 'create:',create
+        print('create:',create)
         if create==True:
             super(UserProfile, self).save(*args, **kwargs)
-        elif recsvec!=None:
+            
+        elif len(recsvec)!=0:
              self.lastrecs = json.dumps(recsvec.tolist())
              super(UserProfile, self).save(*args, **kwargs)
         else:
@@ -34,7 +35,7 @@ class UserProfile(models.Model):
             super(UserProfile, self).save(*args, **kwargs)
     
 class MovieRated(models.Model):
-    user = models.ForeignKey(UserProfile, related_name='ratedmovies')
+    user = models.ForeignKey(UserProfile,  on_delete=models.CASCADE, related_name='ratedmovies')
     movie = models.CharField(max_length=100)
     movieindx = models.IntegerField(default=-1)
     value = models.IntegerField()

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from django.db import models, migrations
 
@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='link',
             name='searchterm',
-            field=models.ForeignKey(related_name='links', blank=True, to='pages.SearchTerm', null=True),
+            field=models.ForeignKey(related_name='links', on_delete=models.CASCADE,blank=True, to='pages.SearchTerm', null=True),
             preserve_default=True,
         ),
     ]

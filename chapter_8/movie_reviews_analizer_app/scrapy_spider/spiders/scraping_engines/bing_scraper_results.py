@@ -33,8 +33,8 @@ class Search(CrawlSpider):
         )
 
     def parse_item(self, response):
-            print 
-            print 'general website processing',(len(self.start_urls))
+            print() 
+            print('general website processing',(len(self.start_urls)))
             sel = Selector(response)
 
             ## Get meta info from website
@@ -52,10 +52,10 @@ class Search(CrawlSpider):
             depth = response.request.meta['depth']
             
             #page = Page()
-            print fromurl,'--title:',title,'-',response.url,' depth:',depth
-            print contents
+            print(fromurl,'--title:',title,'-',response.url,' depth:',depth)
+            print(contents)
             if( int(depth)> 1):
-               print fromurl,'--title:',title,'-',response.url,' depth:',depth
+               print(fromurl,'--title:',title,'-',response.url,' depth:',depth)
 
 
 

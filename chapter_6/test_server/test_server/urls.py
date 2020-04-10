@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
 from addressesapp.api import AddressesList
 from addressesapp.views import main, get_contacts, addressesbook, delete_person, notfound
@@ -10,11 +10,11 @@ urlpatterns = [
 ]  
 urlpatterns += [
     #url(r'^docs/', include('rest_framework_swagger.urls')),
-    url(r'^$',main, name='home'),
+    url(r'^$',main, name='main'),
     url(r'^book/',addressesbook,name='addressesbook'),
     url(r'^delete/(?P<name>.*)/',delete_person, name='delete_person'),
     url(r'^book-search/',get_contacts, name='get_contacts'),
     url(r'^addresses-list/', AddressesList.as_view(), name='addresses-list'),
     url(r'^notfound/',notfound, name='notfound'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 ]

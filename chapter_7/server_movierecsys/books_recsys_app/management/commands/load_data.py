@@ -6,7 +6,7 @@ import pandas as pd
 import math
 import json
 import copy
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import WordPunctTokenizer
@@ -59,7 +59,7 @@ class Command(BaseCommand):
         
     def PreprocessTfidf(self,texts,stoplist=[],stem=False):
         newtexts = []
-        for i in xrange(len(texts)):
+        for i in range(len(texts)):
             text = texts[i]
             if stem:
                tmp = [w for w in tknzr.tokenize(text) if w not in stoplist]
@@ -86,10 +86,10 @@ class Command(BaseCommand):
         MovieData.objects.all().delete()
         
         matr = np.empty([1,ndims])
-        print ndims
+        print(ndims)
         titles = []
         cnt=0
-        for m in xrange(nmovies):
+        for m in range(nmovies):
             moviedata = MovieData()
             moviedata.title=tot_titles[m]
             moviedata.description=tot_textplots[m]
@@ -108,7 +108,7 @@ class Command(BaseCommand):
         cache.set('titles', titles)
         titles = cache.get('titles')
         #print titles
-        print 'len:',len(titles)
+        print('len:',len(titles))
         cache.set('model',mod_tfidf)
 
         
@@ -116,7 +116,7 @@ class Command(BaseCommand):
         umatrixfile = options['umatrixfile']
         df_umatrix = pd.read_csv(umatrixfile)
         Umatrix = df_umatrix.values[:,1:]
-        print 'umatrix:',Umatrix.shape
+        print('umatrix:',Umatrix.shape)
         cache.set('umatrix',Umatrix)
         #load rec methods... 
         cf_itembased = CF_itembased(Umatrix)
@@ -128,7 +128,7 @@ class Command(BaseCommand):
         #test...
         model_vec = cache.get('model')
         #print 'mod:',model_vec,'--',mod_tfidf
-        print 'nwords:',len(model_vec.get_feature_names())
+        print('nwords:',len(model_vec.get_feature_names()))
         #print 'vec:',model_vec.transform(['wars star'])  
         
 from scipy.stats import pearsonr
@@ -145,8 +145,8 @@ class CF_itembased(object):
         nitems = len(data[0])
         self.data = data
         self.simmatrix = np.zeros((nitems,nitems))
-        for i in xrange(nitems):
-            for j in xrange(nitems):
+        for i in range(nitems):
+            for j in range(nitems):
                 if j>=i:#triangular matrix
                    self.simmatrix[i,j] = sim(data[:,i],data[:,j])
                 else:
@@ -179,14 +179,14 @@ class CF_itembased(object):
         
     def CalcRatings(self,u_vec,K,indxs=False):
         u_rec = copy.copy(u_vec)
-        for r in xrange(len(u_vec)):
+        for r in range(len(u_vec)):
             if u_vec[r]==0:
                neighitems = self.GetKSimItemsperUser(r,K,u_vec)
                #calc predicted rating
                u_rec[r] = self.CalcRating(r,u_vec,neighitems)
         if indxs:
             #take out the rated movies
-            seenindxs = [indx for indx in xrange(len(u_vec)) if u_vec[indx]>0]
+            seenindxs = [indx for indx in range(len(u_vec)) if u_vec[indx]>0]
             u_rec[seenindxs]=-1
             recsvec = np.argsort(u_rec)[::-1][np.argsort(u_rec)>0]
         
@@ -200,8 +200,8 @@ class LogLikelihood(object):
         self.nusers = len(Umatrix)
         self.Umatrix =Umatrix
         self.likethreshold = likethreshold
-        self.likerange = range(self.likethreshold+1,5+1)
-        self.dislikerange = range(1,self.likethreshold+1)
+        self.likerange = list(range(self.likethreshold+1,5+1))
+        self.dislikerange = list(range(1,self.likethreshold+1))
         self.loglikelihood_ratio()
 
     def calc_k(self,a,b):
@@ -235,19 +235,19 @@ class LogLikelihood(object):
     def loglikelihood_ratio(self):
         nitems = len(self.Movieslist)
         self.items_llr= pd.DataFrame(np.zeros((nitems,nitems))).astype(float)
-        for i in xrange(nitems):
-            for j in xrange(nitems):
+        for i in range(nitems):
+            for j in range(nitems):
                 if(j>=i):
                    tmpk=self.calc_k(i,j)
                    self.items_llr.ix[i,j] = self.calc_llr(tmpk)
                 else:
                    self.items_llr.ix[i,j] = self.items_llr.iat[j,i]
-        print self.items_llr
+        print(self.items_llr)
         
     def GetRecItems(self,u_vec,indxs=False):
         items_weight = np.dot(u_vec,self.items_llr)
         sortedweight = np.argsort(items_weight)
-        seenindxs = [indx for indx in xrange(len(u_vec)) if u_vec[indx]>0]
+        seenindxs = [indx for indx in range(len(u_vec)) if u_vec[indx]>0]
         seenmovies = np.array(self.Movieslist)[seenindxs]
         #remove seen items
         recitems = np.array(self.Movieslist)[sortedweight]

@@ -18,12 +18,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
          searchid = options['searchid']
          if searchid == None:
-             print "please specify searchid: python manage.py --searchid=--"
+             print("please specify searchid: python manage.py --searchid=--")
              #list
              for sobj in SearchTerm.objects.all():
-                 print 'id:',sobj.id,"  term:",sobj.term
+                 print('id:',sobj.id,"  term:",sobj.term)
          else:
-             print 'delete...'
+             print('delete...')
              search_obj = SearchTerm.objects.get(id=searchid)
              pages = search_obj.pages.all()
              pages.delete()

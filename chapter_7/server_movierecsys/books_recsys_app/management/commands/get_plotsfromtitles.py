@@ -58,12 +58,12 @@ class Command(BaseCommand):
         if plot!=None and plot!='' and plot!=np.nan and len(plot)>3:#at least 3 letters to consider the movie
             df_moviesplots.loc[len(df_moviesplots)]=[string,plot]
             df_utilitymatrix[col] = df_movies[col]
-            print len(df_utilitymatrix.columns)
+            print(len(df_utilitymatrix.columns))
 
         return df_moviesplots,df_utilitymatrix
     
     def handle(self, *args, **options):
-        print options
+        print(options)
         pathutilitymatrix = options['input']
         df_movies = pd.read_csv(pathutilitymatrix)
         movieslist = list(df_movies.columns[1:])
@@ -73,11 +73,11 @@ class Command(BaseCommand):
         df_utilitymatrix = pd.DataFrame()
         df_utilitymatrix['user'] = df_movies['user']
         
-        print 'nmovies:',len(movieslist)
+        print('nmovies:',len(movieslist))
         for m in movieslist[:]:
             df_moviesplots,df_utilitymatrix=self.getplotfromomdb(m,df_moviesplots,df_movies,df_utilitymatrix)
             
-        print len(df_movies.columns),'--',len(df_utilitymatrix.columns)
+        print(len(df_movies.columns),'--',len(df_utilitymatrix.columns))
         outputfile = options['outputplots']
         df_moviesplots.to_csv(outputfile, index=False)
         outumatrixfile = options['outputumatrix']

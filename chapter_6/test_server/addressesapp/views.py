@@ -1,12 +1,10 @@
 from django.shortcuts import render
 import datetime
 import os
-import urllib2
 import urllib
 import json
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.shortcuts import redirect
-from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template import loader
 from addressesapp.models import Person
@@ -23,19 +21,19 @@ def main(request):
         data['name'] = post_data.get('name', None)
         data['email'] = post_data.get('email', None)
         if data:
-            return redirect('%s?%s' % (reverse('addressesapp.views.main'),
-                                urllib.urlencode({'q': data})))
+            return redirect('%s?%s' % (reverse('main'),
+                                urllib.parse.urlencode({'q': data})))
     elif request.method == 'GET':
         get_data = request.GET
         data= get_data.get('q',None)
         if not data:
-            return render_to_response(
-                'addressesapp/home.html', context)
+            return render(
+                request, 'addressesapp/home.html', context)
         data = literal_eval(get_data.get('q',None))
-        print data
+        print(data)
         if not data['name'] and not data['email']:
-            return render_to_response(
-                'addressesapp/home.html', context)
+            return render(
+                request, 'addressesapp/home.html', context)
                 
         #add person to emails address book or update
         if Person.objects.filter(name=data['name']).exists():
@@ -49,8 +47,8 @@ def main(request):
             p.save()
             
         #restart page
-        return render_to_response(
-            'addressesapp/home.html', context)   
+        return render(
+            request, 'addressesapp/home.html', context)   
             
 def addressesbook(request):
     context = {}
@@ -66,8 +64,8 @@ def addressesbook(request):
     context['contacts']=contacts
     alphabetstring='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     context['alphabet']=[l for l in alphabetstring]
-    return render_to_response(
-        'addressesapp/book.html', context)
+    return render(
+        request, 'addressesapp/book.html', context)
 
 def sort_lower(lst, key_name):
     return sorted(lst, key=lambda item: getattr(item, key_name).lower())
@@ -82,25 +80,25 @@ def delete_person(request,name):
     #sorted alphabetically
     contacts = sort_lower(contacts,"name")#contacts.order_by("name")
     context['contacts']=contacts   
-    return render_to_response(
-        'addressesapp/book.html', context)
+    return render(
+        request, 'addressesapp/book.html', context)
       
 def get_contacts(request):
     logging.debug('here')
     if request.method == 'GET':
         get_data = request.GET
         data= get_data.get('term','')
-        print 'get contacts:',data
+        print('get contacts:',data)
         if data == '':
-            return render_to_response(
-               'addressesapp/nopersonfound.html',  {})
+            return render(
+               request, 'addressesapp/nopersonfound.html',  {})
         else:
-            return redirect('%s?%s' % (reverse('addressesapp.views.addressesbook'),
-                                urllib.urlencode({'letter': data})))
+            return redirect('%s?%s' % (reverse('addressesbook'),
+                                urllib.parse.urlencode({'letter': data})))
                                 
 def notfound(request):
     context ={}
-    return render_to_response(
-       'addressesapp/nopersonfound.html', context)
+    return render(
+       request, 'addressesapp/nopersonfound.html', context)
      
         

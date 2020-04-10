@@ -1,5 +1,5 @@
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 import requests
 import json
 from requests.auth import HTTPBasicAuth
@@ -32,9 +32,9 @@ def bing_api(query, source_type = "Web", top = 10, format = 'json'):
     #url = 'https://api.datamarket.azure.com/Bing/Search/Web?' + \
     #      'Query=%s&$format=json' % (searchString)
     
-    request = urllib2.Request(url)
+    request = urllib.request.Request(url)
     request.add_header('Authorization', credentialBing)
-    requestOpener = urllib2.build_opener()
+    requestOpener = urllib.request.build_opener()
     response = requestOpener.open(request) 
 
     results = json.load(response)
@@ -46,12 +46,12 @@ def bing_api(query, source_type = "Web", top = 10, format = 'json'):
 def parse_bing_results():
     file_data = open(o_p.dirname(o_p.abspath(__file__))+'/bing_the_martian_results.json','r')
     bing_json = json.load(file_data)
-    print len(bing_json['d']['results'])
+    print(len(bing_json['d']['results']))
     reviews_urls = [ d['Url'] for d in bing_json['d']['results']]
-    print reviews_urls
+    print(reviews_urls)
     
     
 results =  bing_api('vacation')
-print results
-print len(results['d']['results'])
+print(results)
+print(len(results['d']['results']))
 #parse_bing_results()
