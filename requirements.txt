@@ -9,7 +9,7 @@ numpy==1.16.4
 django_markdown==0.8.4
 beautifulsoup4==4.9.0
 django_jsonfield==1.4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 google_api_python_client==1.8.0
 newspaper==0.1.0.7
 scikit_learn==0.22.2.post1
