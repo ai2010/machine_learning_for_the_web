@@ -7,5 +7,5 @@ numpy==1.16.2
 BeautifulSoup==3.2.1
 django_jsonfield==1.2.0
 nltk==3.4.1
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 scikit_learn==0.21.1
