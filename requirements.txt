@@ -13,5 +13,5 @@ djangorestframework==3.11.0
 google_api_python_client==1.8.0
 newspaper==0.1.0.7
 scikit_learn==0.22.2.post1
-scrapy==2.0.1
+scrapy==2.6.1
 scrapy_djangoitem==1.1.1
