@@ -1,5 +1,5 @@
 scipy==1.2.0
-requests==2.21.0
+requests==2.31.0
 django_rest_swagger==2.2.0
 Django==1.11.20
 pandas==0.23.4
