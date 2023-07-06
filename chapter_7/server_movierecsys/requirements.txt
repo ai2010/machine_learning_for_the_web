@@ -1,4 +1,4 @@
-scipy==1.2.0
+scipy==1.10.0
 requests==2.21.0
 django_rest_swagger==2.2.0
 Django==1.11.20
