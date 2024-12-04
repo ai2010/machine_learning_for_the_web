@@ -6,6 +6,6 @@ pandas==0.23.4
 numpy==1.16.2
 BeautifulSoup==3.2.1
 django_jsonfield==1.2.0
-nltk==3.4.1
+nltk==3.4.5
 djangorestframework==3.9.4
 scikit_learn==0.21.1
